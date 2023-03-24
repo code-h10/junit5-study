@@ -1,5 +1,8 @@
 package com.binary.junit.model;
 
+import lombok.Data;
+
+@Data
 public class Employee {
     private int employeeNumber;
     private String lastName;

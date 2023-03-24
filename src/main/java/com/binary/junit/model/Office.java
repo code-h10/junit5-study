@@ -1,5 +1,8 @@
 package com.binary.junit.model;
 
+import lombok.Data;
+
+@Data
 public class Office {
     private String officeCode;
     private String city;

@@ -1,7 +1,10 @@
 package com.binary.junit.model;
 
+import lombok.Data;
+
 import java.math.BigDecimal;
 
+@Data
 public class Product {
     private String productCode;
     private String productName;
