@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class Customer {
+    private int customerNumber;
     private String customerName;
     private String contractLastName;
     private String contractFirstName;

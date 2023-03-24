@@ -3,7 +3,8 @@
 <mapper namespace="com.binary.junit.repository.CustomerRepository">
 
     <select id="getCustomerDetail" parameterType="int" resultType="com.binary.junit.model.Customer">
-        SELECT  customerName,
+        SELECT  customerNumber,
+                customerName,
                 contactLastName,
                 contactFirstName,
                 phone,
@@ -27,7 +28,7 @@
             <if test="addressLine2 != null">addressLine2 = #{addressLine2},</if>
             <if test="city != null">city = #{city},</if>
             <if test="state != null">state = #{state},</if>
-            <if test="postalCode != null">postalCode = #{postalCode},</if>
+            <if test="postalCode != null">postalCode = #{postalCode}</if>
         </set>
         WHERE customerNumber = #{customerNumber}
     </update>
