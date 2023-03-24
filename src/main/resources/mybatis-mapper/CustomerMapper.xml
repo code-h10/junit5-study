@@ -2,4 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.binary.junit.repository.CustomerRepository">
 
+    <select id="orderHistoriesByCustomerNumber" parameterType="int" resultType="java.util.HashMap">
+        SELECT  c.customerName,
+                CONCAT_WS(' ', c.contactLastName, c.contactFirstName) AS contractName,
+                c.phone,
+                CONCAT_WS(' ',c.addressLine1, IFNULL(c.addressLine2, ''), c.city, c.postalCode, c.country) AS address,
+                o.orderNumber,
+                o.orderDate,
+                o.requiredDate,
+                o.shippedDate,
+                o.comments,
+                o.status,
+                od.productCode,
+                p.productName,
+                od.quantityOrdered,
+                od.priceEach,
+                (od.quantityOrdered * od.priceEach) AS totalAmount
+        FROM customers c
+        INNER JOIN orders o ON o.customerNumber = c.customerNumber
+        INNER JOIN orderdetails od ON od.orderNumber = o.orderNumber
+        INNER JOIN products p ON p.productCode = od.productCode
+        WHERE c.customerNumber = #{customerNumber}
+    </select>
 </mapper>
