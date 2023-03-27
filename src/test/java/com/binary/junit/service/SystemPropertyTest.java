@@ -9,9 +9,15 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 public class SystemPropertyTest {
 
     @Test
-    @EnabledIfSystemProperty(named = "os.arch", matches = "test")
+    @EnabledIfSystemProperty(named = "java.version", matches = "11.0.9")
+    public void onlyOnJavaVersionTest() {
+        System.out.println("java.version=" + System.getProperty("java.version"));
+    }
+
+    @Test
+    @EnabledIfSystemProperty(named = "os.arch", matches = "x86_64")
     public void onlyOnOsArchTest() {
-        System.out.println("os.arch=test");
+        System.out.println("os.arch=" + System.getProperty("os.arch"));
     }
 
 }
