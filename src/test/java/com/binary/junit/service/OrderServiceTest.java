@@ -1,10 +1,7 @@
 package com.binary.junit.service;
 
 import com.binary.junit.model.Customer;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -90,6 +87,15 @@ class OrderServiceTest {
         assertTimeout(ofMillis(10), () ->{
             Thread.sleep(100);
         });
+    }
+
+
+    @Disabled("Disabled Test")
+    @Test
+    public void testWillBeSkipped() {
+        int a = 10;
+        int b = 5;
+        assertEquals(5, a / b);
     }
 
 
