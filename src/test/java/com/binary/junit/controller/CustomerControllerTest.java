@@ -2,9 +2,7 @@ package com.binary.junit.controller;
 
 import com.binary.junit.model.Customer;
 import com.binary.junit.service.CustomerService;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -24,15 +22,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(CustomerController.class)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class CustomerControllerTest {
 
 //    @Autowired ApplicationContext applicationContext;
     @Autowired private MockMvc mockMvc;
     @MockBean private CustomerService customerService;
-    private Customer customer;
+    private static Customer customer;
 
-    @BeforeEach
-    public void setUp() {
+    @BeforeAll
+    static void setUp() {
         customer = new Customer();
         customer.setCustomerName("IlYoungHwang");
         customer.setCustomerNumber(103);
