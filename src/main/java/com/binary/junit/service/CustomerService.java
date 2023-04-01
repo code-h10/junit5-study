@@ -23,7 +23,6 @@ public class CustomerService {
     public String updateCustomerDetail(Customer customerDetail) {
         int updateStatus = customerRepository.updateCustomerDetail(customerDetail);
 
-        Map result = new HashMap();
         if (updateStatus == 1) {
             return "success";
         } else {
