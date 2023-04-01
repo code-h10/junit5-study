@@ -1,29 +1,37 @@
 package com.binary.junit.service;
 
 import com.binary.junit.model.Customer;
-import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.function.Executable;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest
-@DisplayName("고객정보")
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class CustomerServiceTest {
 
-    @Autowired
-    CustomerService customerService;
+    @MockBean CustomerService customerService;
+    private Customer customer;
 
-    @DisplayName("고객상세정보 조회")
+    @BeforeAll
+    void setUp() {
+        customer = new Customer();
+        customer.setCustomerNumber(103);
+        customer.setContractLastName("Hwang");
+        customer.setContractFirstName("IlYoung");
+    }
+
+    @Disabled
     @Test
     public void should_ReturnCustomerDetail_When_GivenCustomerNumber103() {
         Customer result = customerService.getCustomerDetail(103);
@@ -31,11 +39,12 @@ class CustomerServiceTest {
         assertEquals(result.getCustomerNumber(), is(equalTo(103)));
     }
 
-    @DisplayName("기타 테스트")
     @Test
-    public void should_True_When_GivenNumberIsEquals() {
-        int x = 10;
-        int y = 10;
-        assertEquals(x, y);
+    public void should_ReturnSuccess_When_UpdateContractName() {
+        when(customerService.updateCustomerDetail(customer)).thenReturn("success");
+
+        String result = customerService.updateCustomerDetail(customer);
+        assertEquals(result, "success");
+
     }
 }

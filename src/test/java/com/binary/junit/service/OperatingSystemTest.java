@@ -6,8 +6,6 @@ import org.junit.jupiter.api.condition.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.sql.SQLOutput;
-
 @ExtendWith(SpringExtension.class)
 public class OperatingSystemTest {
 
