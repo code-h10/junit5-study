@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.binary.junit.repository.EmployeeRepository">
-
+    <select id="getEmployeeByEmployeeNumber" parameterType="int" resultType="com.binary.junit.model.Employee">
+        SELECT employeeNumber,
+               lastName,
+               firstName,
+               extension,
+               email,
+               officeCode,
+               reportsTo,
+               jobTitle
+        FROM employees
+        WHERE employeeNumber = #{employeeNumber}
+    </select>
+    <select id="getEmployees" resultType="com.binary.junit.model.Employee">
+        SELECT employeeNumber,
+               lastName,
+               firstName,
+               extension,
+               email,
+               officeCode,
+               reportsTo,
+               jobTitle
+        FROM employees
+        LIMIT 1000;
+    </select>
 </mapper>
