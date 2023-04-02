@@ -25,4 +25,10 @@
         FROM employees
         LIMIT 1000;
     </select>
+
+    <update id="updateJobTitle" parameterType="com.binary.junit.model.Employee">
+        UPDATE employees
+        SET jobTitle = #{jobTitle}
+        WHERE employeeNumber = #{employeeNumber}
+    </update>
 </mapper>

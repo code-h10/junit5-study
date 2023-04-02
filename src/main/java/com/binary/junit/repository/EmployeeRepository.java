@@ -10,5 +10,6 @@ public interface EmployeeRepository {
 
     List<Employee> getEmployees();
     Employee getEmployeeByEmployeeNumber(int employeeNumber);
+    void updateJobTitle(Employee employee);
 
 }

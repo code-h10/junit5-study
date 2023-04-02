@@ -2,4 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.binary.junit.repository.OfficeRepository">
 
+    <update id="updateAddress" parameterType="com.binary.junit.model.Office">
+        UPDATE offices
+        <set>
+            <if test="addressLine1 != null"> addressLine1 = #{addressLine1}, </if>
+            <if test="addressLine2 != null"> addressLine2 = #{addressLine2}, </if>
+            <if test="state != null"> state = #{state}, </if>
+            <if test="city != null"> city = #{city}, </if>
+            <if test="postalCode != null"> postalCode = #{postalCode}, </if>
+        </set>
+        WHERE officeCode = #{officeCode}
+    </update>
 </mapper>
