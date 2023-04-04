@@ -23,7 +23,6 @@ public class OfficeService {
         office.setAddressLine1("TEST");
         office.setAddressLine2("TEST");
         officeRepository.updateAddress(office);
-        throw new RuntimeException();
-
+//        throw new RuntimeException();
     }
 }
