@@ -12,5 +12,6 @@ public interface CustomerRepository {
 
     Customer getCustomerDetail(int customerNumber);
     int updateCustomerDetail(Customer customerDetail);
+    int insert(Customer customer);
 
 }

@@ -1,15 +1,14 @@
 package com.binary.junit.service;
 
 import com.binary.junit.model.Customer;
-import com.binary.junit.model.OrderDetail;
 import com.binary.junit.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import static java.util.Objects.nonNull;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class CustomerService {
@@ -20,15 +19,28 @@ public class CustomerService {
         return customerRepository.getCustomerDetail(customerNumber);
     }
 
-    public String updateCustomerDetail(Customer customerDetail) {
-        int updateStatus = customerRepository.updateCustomerDetail(customerDetail);
+    public boolean updateCustomerDetail(Customer customerDetail) {
+        int c = customerRepository.updateCustomerDetail(customerDetail);
 
-        if (updateStatus == 1) {
-            return "success";
+        if (c == 1) {
+            return true;
         } else {
-            return "failure";
+            return false;
         }
-
     }
 
+    public boolean insert(Customer customer) {
+        Customer o = getCustomerDetail(customer.getCustomerNumber());
+        if (nonNull(o)) {
+            log.info("Exists CustomerNumber");
+            return false;
+        }
+
+        int c = customerRepository.insert(customer);
+        if (c >= 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

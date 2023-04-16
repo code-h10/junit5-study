@@ -15,7 +15,7 @@ public class OfficeService {
 
     private final OfficeRepository officeRepository;
 
-    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void updateOfficeAddress(Employee employee) throws Exception{
 
         Office office = new Office();
@@ -23,6 +23,6 @@ public class OfficeService {
         office.setAddressLine1("TEST");
         office.setAddressLine2("TEST");
         officeRepository.updateAddress(office);
-//        throw new RuntimeException();
+        throw new RuntimeException();
     }
 }

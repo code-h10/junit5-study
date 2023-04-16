@@ -21,8 +21,18 @@ public class CustomerController {
     }
 
     @PostMapping("/detail")
-    public String updateCustomerDetail(@RequestParam Customer customerDetail) {
+    public boolean updateCustomerDetail(@RequestParam Customer customerDetail) {
         return customerService.updateCustomerDetail(customerDetail);
+    }
+
+    @PostMapping("/inserted")
+    public void insertCustomer(@RequestBody Customer customer) {
+        customerService.insert(customer);
+    }
+
+    @PutMapping("/updated")
+    public void updateCustomer(@RequestBody Customer customer) {
+
     }
 
 }
